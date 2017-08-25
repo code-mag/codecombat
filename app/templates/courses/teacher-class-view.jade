@@ -23,6 +23,21 @@ block content
         .row.center-block.text-center.m-t-3.m-b-3
           .unarchive-btn.btn.btn-lg.btn-navy
             span(data-i18n='teacher.unarchive_this_class')
+      
+      - var today = new Date()
+      - var created = classroom.created()
+      - var elapsed = Math.abs(today.getTime()-created.getTime())
+      
+      if (elapsed/(1000*60*60*24) > 180)
+        .update-class
+          .alert.alert-info.text-center
+            strong New school year, new levels!
+            .small-details To make sure you're getting the most up-to-date levels, make sure you create a new class for this semester by clicking "Create a New Class" on your 
+              a(href="/teachers/")
+                span teacher dashboard
+              span.spl and giving students the new Class Code that appears. 
+              //- br
+              //- small Having issues? Send us an Intercom message using the blue button in the lower right corner and we'll get you up to date!
 
       h3.m-t-2= classroom.get('name')
       a.label.edit-classroom(data-classroom-id=classroom.id)
