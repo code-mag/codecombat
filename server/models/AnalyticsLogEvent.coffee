@@ -26,7 +26,7 @@ AnalyticsLogEventSchema.statics.logEvent = (user, event, properties={}) ->
     event: event
     properties: properties
 
-  doc.save()
+  return doc.save()
 
 unless config.proxy
   analyticsMongoose = mongoose.createConnection config.mongo.analytics_replica_string, (error) ->
