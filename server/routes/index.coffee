@@ -62,7 +62,7 @@ module.exports.setup = (app) ->
   app.post('/db/achievement/:handle/watchers', mw.patchable.joinWatchers(Achievement))
   app.delete('/db/achievement/:handle/watchers', mw.patchable.leaveWatchers(Achievement))
   
-  app.post('/db/analytics.log.event/-/log_event', mw.analyticsLogEvents.post)
+  app.post('/db/analytics.log.event/-/log_event',  mw.auth.checkHasUser(), mw.analyticsLogEvents.post)
 
   Article = require '../models/Article'
   app.get('/db/article', mw.rest.get(Article))
