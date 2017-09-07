@@ -17,7 +17,9 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.coffee$/, use: { loader: 'coffee-loader'} },
+      { test: /\.coffee$/, use: [
+        { loader: 'coffee-loader' },
+      ] },
       { test: /\.jade$/, use: { loader: 'jade-loader', options: { root: path.resolve('./app') } } },
       { test: /\.pug$/, use: { loader: 'jade-loader', options: { root: path.resolve('./app') } } },
       { test: /\.css$/, use: [
@@ -63,6 +65,10 @@ module.exports = {
     request: 'empty',
   },
   plugins: [
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   minChunks: 2,
+    //   name: 'common' // Specify the common bundle's name.
+    // }),
     new webpack.ProvidePlugin({ // So Bootstrap can use the global jQuery
       $: 'jquery',
       jQuery: 'jquery'
